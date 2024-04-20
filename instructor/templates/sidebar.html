@@ -1,0 +1,29 @@
+<!-- instructor/templates/instructor/sidebar.html -->
+<nav class="bg-gray-800 h-full w-64 py-4">
+    <div class="text-white px-6">
+        <h2 class="text-2xl font-semibold">Instructor Dashboard</h2>
+    </div>
+    <ul class="mt-8">
+        <li>
+            <a href="{% url 'dashboard' %}" class="flex items-center py-2 px-6 text-gray-200 hover:bg-gray-700">
+                Dashboard
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'create_course' %}" class="flex items-center py-2 px-6 text-gray-200 hover:bg-gray-700">
+                Create Course
+            </a>
+        </li>
+        <!-- Add links to create chapters and topics associated with specific courses -->
+        <li>
+            <a href="{% url 'create_chapter' course.id %}" class="flex items-center py-2 px-6 text-gray-200 hover:bg-gray-700">
+                Create Chapter (Course-specific)
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'create_topic' course.id %}" class="flex items-center py-2 px-6 text-gray-200 hover:bg-gray-700">
+                Create Topic (Course-specific)
+            </a>
+        </li>
+    </ul>
+</nav>

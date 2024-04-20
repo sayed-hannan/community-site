@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block content %}
+<section class="grid mx-auto max-w-screen-xl grid-cols-3 gap-4">
+    <!-- Loop through courses and display course cards -->
+    {% for course in courses %}
+        <div class="bg-white rounded-lg p-4 shadow-md">
+            <h2 class="text-xl font-semibold">{{ course.title }}</h2>
+            <p class="text-gray-600">{{ course.description }}</p>
+            <a href="{% url 'course_detail' course.id %}" class="text-blue-500 hover:underline">Learn More</a>
+
+        </div>
+    {% endfor %}
+</section>
+
+
+
+{% endblock %}

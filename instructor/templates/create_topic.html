@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create a New Topic</title>
+  <!-- Include Tailwind CSS here -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100">
+
+  <div class="mx-auto max-w-4xl">
+    <h2 class="text-2xl font-bold mb-4">Create a New Topic</h2>
+    <form method="post" class="space-y-4">
+      {% csrf_token %}
+      <div class="flex flex-col w-1/4 mb-4">
+        <label for="{{ form.chapter.id_for_label }}" class="text-gray-600 ">Chapter</label>
+        {{ form.chapter }}
+      </div>
+      <div class="flex flex-col mb-4">
+        <label for="{{ form.title.id_for_label }}" class="text-gray-600">Title</label>
+        {{ form.title }}
+      </div>
+      <div class="mb-4">
+        <label for="{{ form.content.id_for_label }}" class="text-gray-600">Content</label>
+        <textarea id="{{ form.content.id_for_label }}"
+          name="{{ form.content.name }}">{{ form.content.value }}</textarea>
+      </div>
+
+      <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        Create Topic
+      </button>
+    </form>
+  </div>
+
+  <!-- <script src="https://cdn.ckeditor.com/ckeditor5/39.0.2/balloon/ckeditor.js"></script> -->
+  <script src="https://cdn.ckeditor.com/ckeditor5/39.0.2/super-build/ckeditor.js"></script>
+  <script src="{% static 'js/editor.js' %}"></script>
+
+</body>
+
+</html>

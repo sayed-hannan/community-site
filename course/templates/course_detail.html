@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<section class="flex">
+<!-- Left Sidebar for Table of Contents -->
+<div class="w-1/4 bg-gray-200 p-4">
+    <h2 class="text-xl font-bold mb-4">Table of Contents</h2>
+    <ul>
+        {% for chapter in chapters %}
+        <li class="mb-2">
+            <a href="{% url 'chapter_detail' course.id chapter.id %}"
+                class="font-semibold {% if chapter == selected_chapter %}text-blue-500{% endif %}">
+                {{ chapter.title }}
+            </a>
+            <ul class="ml-4">
+                {% for topic in chapter.topic_set.all %}
+                <li>
+                    <a href="{% url 'topic_detail' course.id chapter.id topic.id %}"
+                        class="{% if topic == selected_topic %}text-blue-500{% endif %}">
+                        {{ topic.title }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<!-- Center Content Area -->
+<div class="w-1/2 p-4">
+    <!-- Content for the selected chapter/topic -->
+    <h1 class="text-2xl font-bold">{{ selected_chapter.title }}</h1>
+    {% if selected_topic %}
+    <h2 class="text-xl font-semibold">{{ selected_topic.title }}</h2>
+    <p>
+        {{ selected_topic.content }}
+    </p>
+    {% endif %}
+</div>
+
+<!-- Right Sidebar for Ads -->
+<div class="w-1/4 bg-gray-200 p-4">
+    <!-- Advertisements can go here -->
+    <h2 class="text-xl font-bold mb-4">Advertisements</h2>
+    <p>
+        Ad space for promoting your products or services.
+    </p>
+</div>
+
+</section>
+
+
+{% endblock %}
